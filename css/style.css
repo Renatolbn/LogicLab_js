@@ -1,0 +1,654 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+button {
+  font-family: "Inter", sans-serif;
+}
+
+code,
+pre {
+  font-family: "Fira Code", "Courier New", monospace;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+}
+.titulo {
+  margin: 20px;
+}
+
+.titulo span {
+  color: blue;
+  font-size: 40px;
+}
+
+.lista {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 25px;
+  list-style: none;
+  margin: 20px;
+}
+
+.item-lista {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-lista a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.item-lista:hover {
+  transform: scale(1.1);
+}
+.sobre {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 500px;
+  padding: 60px 20px;
+  gap: 60px;
+  color: white;
+  background: #210791;
+  background: linear-gradient(
+    124deg,
+    rgba(33, 7, 145, 1) 13%,
+    rgba(67, 74, 222, 1) 69%
+  );
+}
+
+.descricao {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+}
+
+.descricao p {
+  font-style: italic;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.atributos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px; /*limita em telas muito grandes */
+}
+
+.atributos-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 250px;
+  max-width: 350px;
+  gap: 10px;
+  transition: transform 0.3s ease; /*animação no hover */
+}
+
+.atributos-card img {
+  width: 80px;
+  margin-bottom: 20px;
+  background-color: #2b7fff;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  padding: 20px;
+}
+.atributos-card h3 {
+  margin: top 8px;
+  white-space: nowrap; /* ❌ NÃO quebra linha */
+  overflow: hidden; /* Esconde excesso */
+  text-overflow: ellipsis; /* Adiciona "..." */
+}
+
+.atributos-card p {
+  font-style: italic;
+  text-align: center;
+}
+
+.cabecalho-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20px;
+}
+
+.cabecalho-filtros h2 {
+  margin: 20px;
+  white-space: nowrap;
+}
+
+.btn-filtro {
+  padding: 10px 20px;
+  border: 2px solid #ddd;
+  background: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.btn-filtro:hover {
+  border-color: #666;
+}
+
+.btn-filtro.active {
+  background: #2b7fff;
+  color: white;
+  border-color: #2b7fff;
+}
+
+.add-buscar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px;
+  gap: 20px;
+}
+
+.add-buscar input {
+  width: 300px;
+  padding: 8px;
+  border-radius: 5px;
+}
+.add-buscar button {
+  background-color: #2b7fff;
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn-novo {
+  border-radius: 5px;
+}
+.grid-exercicios {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Responsivo: min 300px por card, cresce até preencher */
+  gap: 10px; /* Une column-gap e row-gap em uma só propriedade moderna */
+  padding: 20px; /* Espaçamento extra pros cards respirarem */
+}
+
+.card-exercicio {
+  border: none;
+  border-radius: 8px;
+  padding: 20px;
+  perspective: 1000px;
+  height: 400px;
+  max-width: 670px;
+}
+
+.titulo-card h3 {
+  font-size: 20px;
+  flex: 1; /* ✅ ocupa o espaço disponível */
+  min-width: 0; /* ✅ permite truncar com ellipsis */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.titulo-card span {
+  font-size: 14px;
+  color: orangered;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%; /* ← ocupa a altura do pai */
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card-front {
+  background: #faf9f6;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "titulo titulo"
+    "conteudo acoes";
+  gap: 12px;
+}
+
+.titulo-card {
+  grid-area: titulo;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.titulo-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.titulo-topo h3 {
+  font-size: 20px;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.titulo-card span {
+  font-size: 14px;
+  color: orangered;
+  white-space: nowrap;
+  flex-shrink: 0; /* ✅ tag nunca encolhe nem gruda no título */
+}
+
+.titulo-card p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.area-conteudo {
+  grid-area: conteudo;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* ✅ centraliza verticalmente */
+  gap: 8px;
+}
+
+.area-conteudo button {
+  width: fit-content;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+}
+
+.area-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 40%;
+}
+
+.area-inputs input {
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.rodape-card {
+  grid-area: acoes;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* ✅ botões centralizados no mesmo eixo dos inputs */
+  align-items: flex-end;
+  gap: 8px;
+}
+.card-back {
+  background: #faf9f6;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  height: 100%; /* ← ocupa tudo */
+  backface-visibility: hidden;
+  border-radius: 10px;
+  padding: 20px;
+  gap: 15px;
+  box-sizing: border-box; /* ← evita estourar a largura com o padding */
+  overflow-y: auto; /* ← se o conteúdo for grande, rola ao invés de vazar */
+  transform: rotateY(180deg);
+}
+
+.btn-ver-codigo {
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  background: #2b7fff;
+  color: white;
+}
+
+.btn-voltar {
+  width: fit-content;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background: #2b7fff;
+  color: white;
+}
+
+.btn-editar {
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  background: #ebe712;
+  color: white;
+}
+
+.btn-excluir {
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  background: #c31a39;
+  color: white;
+}
+
+.card-exercicio.virado .card-inner {
+  transform: rotateY(180deg);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 999;
+  overflow-y: auto; /* scroll no fundo escuro */
+  padding: 20px 0; /* respiro no topo e fundo */
+}
+
+.modal-content {
+  background: #fff;
+  width: 700px;
+  margin: 0px auto;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-content input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal-content select {
+  width: 35%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.modal-content textarea {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  min-height: 150px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.input-exercicio {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#btn-add-input {
+  background-color: #2b7fff;
+  color: white;
+  width: 150px;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+}
+
+.input-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
+  text-align: left;
+}
+
+.input-row button {
+  background: #c31a39;
+  color: white;
+  padding: 8px;
+  position: relative;
+  top: -60px;
+  right: 125px;
+  align-self: center;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+}
+
+.input-tipo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.input-tipo label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.modal-acoes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.modal-acoes button {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+}
+
+#btn-salvar {
+  background-color: blue;
+  color: white;
+}
+
+#btn-cancelar {
+  background: #c31a39;
+  color: white;
+}
+
+footer {
+  background-color: black;
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.contato {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 20px;
+}
+
+.contato h2 {
+  margin-bottom: 20px;
+  font-weight: lighter;
+}
+
+.contato img {
+  width: 20px;
+}
+
+.redes-sociais {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.redes-sociais a {
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+  cursor: pointer;
+}
+
+.redes-sociais a:hover {
+  transform: scale(1.1);
+}
+
+.duvidas {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  gap: 20px;
+}
+
+.duvidas h3 {
+  color: white;
+  font-weight: lighter;
+}
+
+.duvidas form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.duvidas form input {
+  height: 30px;
+  border-radius: 5px;
+}
+
+.duvidas form textarea {
+  height: 100px;
+  width: 300px;
+  border-radius: 5px;
+}
+
+.duvidas form button {
+  width: 100px;
+  background-color: #2b7fff;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  position: relative;
+  left: 35%;
+}
+
+/*=====Responsividade=====*/
+
+/* Tablets */
+@media (max-width: 768px) {
+  .sobre {
+    min-height: auto;
+    padding: 40px 15px;
+    gap: 30px;
+  }
+
+  .descricao h2 {
+    font-size: 32px;
+  }
+
+  .atributos-card {
+    flex: 1 1 calc(50% - 20px); /* 2 cards por linha */
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .sobre {
+    padding: 30px 10px;
+    gap: 25px;
+  }
+
+  .descricao h2 {
+    font-size: 28px;
+  }
+
+  .descricao p {
+    font-size: 14px;
+  }
+
+  .atributos-card {
+    flex: 1 1 100%; /* 1 card por linha */
+    max-width: 100%;
+  }
+
+  .atributos-card img {
+    width: 60px;
+    padding: 15px;
+  }
+}
